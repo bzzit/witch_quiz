@@ -1,0 +1,87 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* 화면 전체 높이 사용 */
+    background-image: url('cwc_title.jpg'); /* 마녀의 성 이미지 URL */
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* 배경 스크롤 안 되게 고정 */
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.8); /* 흰색 배경에 80% 투명도 */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 80%; /* 컨테이너 너비 */
+    max-width: 800px; /* 최대 너비 설정 */
+}
+
+.question-box {
+    margin-bottom: 30px;
+}
+
+#questionImage {
+    max-width: 100%; /* 부모 요소(question-box) 너비에 맞춰 크기 조절 */
+    height: auto; /* 이미지 비율 유지 */
+    display: block; /* 기본적으로는 block으로 설정 (JS에서 제어할 것) */
+    margin: 0 auto;
+    border-radius: 8px; /* 모서리를 둥글게 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+}
+
+#question {
+    font-size: 1.8em;
+    color: #333;
+    margin: 0 0 20px 0; /* 아래 여백 추가 */
+}
+
+.answer-box {
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* 입력창과 버튼 사이 간격 */
+    margin-bottom: 20px;
+}
+
+#answerInput {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1.1em;
+    width: 70%; /* 입력창 너비 */
+}
+
+#submitBtn {
+    padding: 12px 20px;
+    background-color: #4CAF50; /* 버튼 색상 */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#submitBtn:hover {
+    background-color: #45a049;
+}
+
+.feedback-message {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-top: 15px;
+    min-height: 25px; /* 메시지가 없을 때 공간 확보 */
+}
+
+.feedback-message.correct {
+    color: #28a745; /* 정답 색상 */
+}
+
+.feedback-message.wrong {
+    color: #dc3545; /* 오답 색상 */
+}
