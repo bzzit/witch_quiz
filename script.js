@@ -53,6 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     let currentQuestionIndex = 0;
+    let isProcessing = false; // 정답 처리 중인지 확인하는 플래그
 
     // 퀴즈 로드 함수
     function loadQuestion() {
@@ -71,21 +72,35 @@ document.addEventListener('DOMContentLoaded', () => {
         feedbackElement.textContent = ''; // 피드백 메시지 초기화
         feedbackElement.classList.remove('correct', 'wrong'); // 클래스 초기화
         answerInput.focus(); // 입력창에 자동 포커스
+        isProcessing = false; // 새 문제 로드 시 처리 상태 초기화
     }
 
     // 정답 확인 함수
     function checkAnswer() {
+        // 이미 처리 중이면 중복 실행 방지
+        if (isProcessing) {
+            return;
+        }
+
         const userAnswer = answerInput.value.trim(); // 공백 제거
         const correctAnswer = quizData[currentQuestionIndex].answer;
 
         if (userAnswer === correctAnswer) {
+            isProcessing = true; // 정답 처리 시작
             feedbackElement.textContent = '정답입니다!';
             feedbackElement.classList.remove('wrong');
             feedbackElement.classList.add('correct');
 
+            // 버튼과 입력창 비활성화
+            submitBtn.disabled = true;
+            answerInput.disabled = true;
+
             setTimeout(() => {
                 currentQuestionIndex++;
                 if (currentQuestionIndex < quizData.length) {
+                    // 버튼과 입력창 다시 활성화
+                    submitBtn.disabled = false;
+                    answerInput.disabled = false;
                     loadQuestion(); // 다음 문제 로드
                 } else {
                     questionElement.textContent = "모든 문제를 푸셨습니다! 축하합니다!";
